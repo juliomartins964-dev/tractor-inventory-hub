@@ -92,13 +92,13 @@ export const FiscalYearStrip = ({ tratores }: Props) => {
             return (
               <Tooltip key={`${d.label}-${d.year}`}>
                 <TooltipTrigger asChild>
-                  <div className="group flex flex-col items-center gap-1.5 cursor-default">
-                    <div className="relative w-full h-24 bg-muted/60 rounded-md overflow-hidden flex items-end">
+                  <div className="group flex flex-col items-center gap-1 cursor-default">
+                    <div className="relative w-full h-16 bg-muted/60 rounded-md overflow-hidden flex items-end justify-center">
                       <div
-                        className="w-full bg-gradient-to-t from-primary to-primary-light transition-all duration-500 group-hover:from-accent group-hover:to-accent"
+                        className="absolute bottom-0 inset-x-0 bg-gradient-to-t from-primary to-primary-light transition-all duration-500 group-hover:from-accent group-hover:to-accent"
                         style={{ height: `${heightPct}%` }}
                       />
-                      <span className="absolute inset-x-0 top-1 text-center text-xs font-bold text-foreground tabular-nums">
+                      <span className="relative text-center text-xs font-bold text-foreground tabular-nums mb-1">
                         {d.qtd}
                       </span>
                     </div>

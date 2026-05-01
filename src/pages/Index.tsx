@@ -94,6 +94,24 @@ const Index = () => {
     e.target.value = "";
   };
 
+  const handleExportXLSX = () => {
+    const rows = filtered.map((t) => ({
+      Status: t.status,
+      Cotação: t.cotacao,
+      Chassi: t.chassi,
+      Filial: t.filial,
+      Valor: t.valor,
+      "Data Entrada": formatDate(t.dataEntrada),
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    ws["!cols"] = [{ wch: 14 }, { wch: 16 }, { wch: 18 }, { wch: 18 }, { wch: 14 }, { wch: 14 }];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Tratores");
+    const filename = `veneza-estoque-${new Date().toISOString().slice(0, 10)}.xlsx`;
+    XLSX.writeFile(wb, filename);
+    toast.success("Planilha exportada!", { description: `${rows.length} registro(s) em ${filename}` });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}

@@ -143,25 +143,37 @@ const Index = () => {
             <p className="text-sm text-muted-foreground">Cadastre, filtre e acompanhe os tratores em estoque.</p>
           </div>
 
-          <TooltipProvider delayDuration={150}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  size="lg"
-                  onClick={handleCadastro}
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
-                >
-                  <Upload className="mr-2 h-4 w-4" />
-                  Cadastro
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent className="bg-foreground text-background font-medium">
-                <FileText className="inline h-3.5 w-3.5 mr-1.5" />
-                Selecione o PDF da Nota Fiscal
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <input ref={fileInputRef} type="file" accept="application/pdf" hidden onChange={handleFile} />
+          <div className="flex items-center gap-3">
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={handleExportXLSX}
+              disabled={filtered.length === 0}
+              className="border-primary/30 text-primary hover:bg-primary/5 font-semibold shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Exportar XLSX
+            </Button>
+            <TooltipProvider delayDuration={150}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="lg"
+                    onClick={handleCadastro}
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
+                  >
+                    <Upload className="mr-2 h-4 w-4" />
+                    Cadastro
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-foreground text-background font-medium">
+                  <FileText className="inline h-3.5 w-3.5 mr-1.5" />
+                  Selecione o PDF da Nota Fiscal
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <input ref={fileInputRef} type="file" accept="application/pdf" hidden onChange={handleFile} />
+          </div>
         </div>
 
         {/* Filtros */}

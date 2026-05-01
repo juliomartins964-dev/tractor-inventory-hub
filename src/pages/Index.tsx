@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import {
-  Tractor, FileText, Upload, Search, Wallet, Package, TrendingUp,
-  CheckCircle2, Building2, CalendarDays,
+  FileText, Upload, Search, Wallet, Package, TrendingUp,
+  CheckCircle2, Building2, CalendarDays, Download,
 } from "lucide-react";
+import * as XLSX from "xlsx";
 import seedData from "@/data/tratores.json";
 import { Trator } from "@/types/trator";
 import { StatCard } from "@/components/StatCard";
 import { MiniDashboard } from "@/components/MiniDashboard";
+import logo from "@/assets/veneza-logo.png";
 
 const STATUS_OPTIONS = ["Disponível", "Reservado", "Vendido", "Em trânsito"];
 

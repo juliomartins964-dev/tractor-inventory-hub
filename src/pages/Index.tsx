@@ -17,6 +17,7 @@ import seedData from "@/data/tratores.json";
 import { Trator } from "@/types/trator";
 import { StatCard } from "@/components/StatCard";
 import { MiniDashboard } from "@/components/MiniDashboard";
+import { FiscalYearStrip } from "@/components/FiscalYearStrip";
 import logo from "@/assets/veneza-logo.png";
 
 const STATUS_OPTIONS = ["Disponível", "Reservado", "Vendido", "Em trânsito"];
@@ -235,6 +236,9 @@ const Index = () => {
 
         {/* Mini Dashboard */}
         <MiniDashboard tratores={filtered} />
+
+        {/* Ano Fiscal */}
+        <FiscalYearStrip tratores={filtered} />
 
         {/* Tabela */}
         <section className="card-elevated overflow-hidden">

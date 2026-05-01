@@ -276,7 +276,7 @@ const Index = () => {
         </section>
 
         <footer className="text-center text-xs text-muted-foreground pt-4 pb-2">
-          AgroStock © 2026 — Sistema de gestão de estoque agrícola
+          Veneza Máquinas © 2026 — Sistema de gestão de estoque agrícola
         </footer>
       </main>
     </div>

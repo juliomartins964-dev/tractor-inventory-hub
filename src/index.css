@@ -1,42 +1,56 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* John Deere inspired design system - Green, Yellow, White */
 
 @layer base {
   :root {
-    --background: 0 0% 100%;
-    --foreground: 222.2 84% 4.9%;
+    --background: 0 0% 98%;
+    --foreground: 140 30% 12%;
 
     --card: 0 0% 100%;
-    --card-foreground: 222.2 84% 4.9%;
+    --card-foreground: 140 30% 12%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 222.2 84% 4.9%;
+    --popover-foreground: 140 30% 12%;
 
-    --primary: 222.2 47.4% 11.2%;
-    --primary-foreground: 210 40% 98%;
+    /* John Deere Green */
+    --primary: 105 49% 33%;
+    --primary-foreground: 0 0% 100%;
+    --primary-dark: 105 55% 22%;
+    --primary-light: 105 40% 45%;
 
-    --secondary: 210 40% 96.1%;
-    --secondary-foreground: 222.2 47.4% 11.2%;
+    /* John Deere Yellow */
+    --accent: 53 100% 50%;
+    --accent-foreground: 140 30% 12%;
 
-    --muted: 210 40% 96.1%;
-    --muted-foreground: 215.4 16.3% 46.9%;
+    --secondary: 105 20% 96%;
+    --secondary-foreground: 105 49% 25%;
 
-    --accent: 210 40% 96.1%;
-    --accent-foreground: 222.2 47.4% 11.2%;
+    --muted: 140 10% 95%;
+    --muted-foreground: 140 8% 42%;
 
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 40% 98%;
+    --destructive: 0 75% 50%;
+    --destructive-foreground: 0 0% 100%;
 
-    --border: 214.3 31.8% 91.4%;
-    --input: 214.3 31.8% 91.4%;
-    --ring: 222.2 84% 4.9%;
+    --success: 142 70% 40%;
+    --warning: 38 95% 50%;
+    --info: 210 90% 50%;
 
-    --radius: 0.5rem;
+    --border: 140 12% 90%;
+    --input: 140 12% 90%;
+    --ring: 105 49% 33%;
+
+    --radius: 0.75rem;
+
+    --shadow-card: 0 2px 8px -2px hsl(140 30% 12% / 0.06), 0 4px 16px -4px hsl(140 30% 12% / 0.04);
+    --shadow-elevated: 0 8px 24px -8px hsl(105 49% 33% / 0.18);
+    --gradient-primary: linear-gradient(135deg, hsl(105 49% 33%), hsl(105 55% 25%));
+    --gradient-accent: linear-gradient(135deg, hsl(53 100% 50%), hsl(48 100% 55%));
+    --transition-smooth: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
 
     --sidebar-background: 0 0% 98%;
 

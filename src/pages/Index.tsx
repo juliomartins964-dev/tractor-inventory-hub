@@ -63,6 +63,14 @@ const Index = () => {
   const totalValor = filtered.reduce((acc, t) => acc + t.valor, 0);
   const disponiveis = filtered.filter((t) => t.status === "Disponível").length;
   const ticketMedio = filtered.length ? totalValor / filtered.length : 0;
+  const diasMedios = filtered.length
+    ? Math.round(
+        filtered.reduce((acc, t) => {
+          const diff = (Date.now() - new Date(t.dataEntrada + "T00:00:00").getTime()) / 86400000;
+          return acc + Math.max(0, diff);
+        }, 0) / filtered.length
+      )
+    : 0;
 
   const handleCadastro = () => fileInputRef.current?.click();
 

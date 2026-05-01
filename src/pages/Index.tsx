@@ -100,11 +100,11 @@ const Index = () => {
       <header className="bg-gradient-to-r from-primary to-primary-dark text-primary-foreground border-b-4 border-accent">
         <div className="container mx-auto px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-lg bg-accent flex items-center justify-center shadow-md">
-              <Tractor className="h-6 w-6 text-primary-dark" strokeWidth={2.5} />
+            <div className="h-14 w-14 rounded-lg bg-white flex items-center justify-center shadow-md p-1">
+              <img src={logo} alt="Veneza Máquinas — John Deere" className="h-full w-full object-contain" />
             </div>
             <div>
-              <h1 className="text-xl font-bold leading-tight tracking-tight">AgroStock</h1>
+              <h1 className="text-xl font-bold leading-tight tracking-tight">Veneza Máquinas</h1>
               <p className="text-xs text-primary-foreground/80">Controle de Estoque de Tratores</p>
             </div>
           </div>

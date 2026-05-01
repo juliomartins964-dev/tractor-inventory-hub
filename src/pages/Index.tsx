@@ -63,6 +63,14 @@ const Index = () => {
   const totalValor = filtered.reduce((acc, t) => acc + t.valor, 0);
   const disponiveis = filtered.filter((t) => t.status === "Disponível").length;
   const ticketMedio = filtered.length ? totalValor / filtered.length : 0;
+  const diasMedios = filtered.length
+    ? Math.round(
+        filtered.reduce((acc, t) => {
+          const diff = (Date.now() - new Date(t.dataEntrada + "T00:00:00").getTime()) / 86400000;
+          return acc + Math.max(0, diff);
+        }, 0) / filtered.length
+      )
+    : 0;
 
   const handleCadastro = () => fileInputRef.current?.click();
 
@@ -217,11 +225,12 @@ const Index = () => {
         </section>
 
         {/* Cards */}
-        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+        <section className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
           <StatCard label="Total em Estoque" value={String(filtered.length)} hint="unidades filtradas" icon={Package} variant="primary" />
           <StatCard label="Disponíveis" value={String(disponiveis)} hint="prontos para venda" icon={CheckCircle2} variant="accent" />
           <StatCard label="Valor Total" value={formatBRL(totalValor)} hint="estoque filtrado" icon={Wallet} variant="info" />
           <StatCard label="Ticket Médio" value={formatBRL(ticketMedio)} hint="por trator" icon={TrendingUp} variant="warning" />
+          <StatCard label="Dias em Estoque" value={`${diasMedios} dias`} hint="média por trator" icon={CalendarDays} variant="primary" />
         </section>
 
         {/* Mini Dashboard */}

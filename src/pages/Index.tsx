@@ -9,13 +9,15 @@ import {
 } from "@/components/ui/select";
 import { toast } from "sonner";
 import {
-  Tractor, FileText, Upload, Search, Wallet, Package, TrendingUp,
-  CheckCircle2, Building2, CalendarDays,
+  FileText, Upload, Search, Wallet, Package, TrendingUp,
+  CheckCircle2, Building2, CalendarDays, Download,
 } from "lucide-react";
+import * as XLSX from "xlsx";
 import seedData from "@/data/tratores.json";
 import { Trator } from "@/types/trator";
 import { StatCard } from "@/components/StatCard";
 import { MiniDashboard } from "@/components/MiniDashboard";
+import logo from "@/assets/veneza-logo.png";
 
 const STATUS_OPTIONS = ["Disponível", "Reservado", "Vendido", "Em trânsito"];
 
@@ -92,17 +94,35 @@ const Index = () => {
     e.target.value = "";
   };
 
+  const handleExportXLSX = () => {
+    const rows = filtered.map((t) => ({
+      Status: t.status,
+      Cotação: t.cotacao,
+      Chassi: t.chassi,
+      Filial: t.filial,
+      Valor: t.valor,
+      "Data Entrada": formatDate(t.dataEntrada),
+    }));
+    const ws = XLSX.utils.json_to_sheet(rows);
+    ws["!cols"] = [{ wch: 14 }, { wch: 16 }, { wch: 18 }, { wch: 18 }, { wch: 14 }, { wch: 14 }];
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Tratores");
+    const filename = `veneza-estoque-${new Date().toISOString().slice(0, 10)}.xlsx`;
+    XLSX.writeFile(wb, filename);
+    toast.success("Planilha exportada!", { description: `${rows.length} registro(s) em ${filename}` });
+  };
+
   return (
     <div className="min-h-screen bg-background">
       {/* Header */}
       <header className="bg-gradient-to-r from-primary to-primary-dark text-primary-foreground border-b-4 border-accent">
         <div className="container mx-auto px-6 py-5 flex items-center justify-between">
           <div className="flex items-center gap-3">
-            <div className="h-11 w-11 rounded-lg bg-accent flex items-center justify-center shadow-md">
-              <Tractor className="h-6 w-6 text-primary-dark" strokeWidth={2.5} />
+            <div className="h-14 w-14 rounded-lg bg-white flex items-center justify-center shadow-md p-1">
+              <img src={logo} alt="Veneza Máquinas — John Deere" className="h-full w-full object-contain" />
             </div>
             <div>
-              <h1 className="text-xl font-bold leading-tight tracking-tight">AgroStock</h1>
+              <h1 className="text-xl font-bold leading-tight tracking-tight">Veneza Máquinas</h1>
               <p className="text-xs text-primary-foreground/80">Controle de Estoque de Tratores</p>
             </div>
           </div>
@@ -123,25 +143,37 @@ const Index = () => {
             <p className="text-sm text-muted-foreground">Cadastre, filtre e acompanhe os tratores em estoque.</p>
           </div>
 
-          <TooltipProvider delayDuration={150}>
-            <Tooltip>
-              <TooltipTrigger asChild>
-                <Button
-                  size="lg"
-                  onClick={handleCadastro}
-                  className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
-                >
-                  <Upload className="mr-2 h-4 w-4" />
-                  Cadastro
-                </Button>
-              </TooltipTrigger>
-              <TooltipContent className="bg-foreground text-background font-medium">
-                <FileText className="inline h-3.5 w-3.5 mr-1.5" />
-                Selecione o PDF da Nota Fiscal
-              </TooltipContent>
-            </Tooltip>
-          </TooltipProvider>
-          <input ref={fileInputRef} type="file" accept="application/pdf" hidden onChange={handleFile} />
+          <div className="flex items-center gap-3">
+            <Button
+              size="lg"
+              variant="outline"
+              onClick={handleExportXLSX}
+              disabled={filtered.length === 0}
+              className="border-primary/30 text-primary hover:bg-primary/5 font-semibold shadow-sm hover:shadow-md transition-all hover:-translate-y-0.5"
+            >
+              <Download className="mr-2 h-4 w-4" />
+              Exportar XLSX
+            </Button>
+            <TooltipProvider delayDuration={150}>
+              <Tooltip>
+                <TooltipTrigger asChild>
+                  <Button
+                    size="lg"
+                    onClick={handleCadastro}
+                    className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md hover:shadow-lg transition-all hover:-translate-y-0.5"
+                  >
+                    <Upload className="mr-2 h-4 w-4" />
+                    Cadastro
+                  </Button>
+                </TooltipTrigger>
+                <TooltipContent className="bg-foreground text-background font-medium">
+                  <FileText className="inline h-3.5 w-3.5 mr-1.5" />
+                  Selecione o PDF da Nota Fiscal
+                </TooltipContent>
+              </Tooltip>
+            </TooltipProvider>
+            <input ref={fileInputRef} type="file" accept="application/pdf" hidden onChange={handleFile} />
+          </div>
         </div>
 
         {/* Filtros */}
@@ -244,7 +276,7 @@ const Index = () => {
         </section>
 
         <footer className="text-center text-xs text-muted-foreground pt-4 pb-2">
-          AgroStock © 2026 — Sistema de gestão de estoque agrícola
+          Veneza Máquinas © 2026 — Sistema de gestão de estoque agrícola
         </footer>
       </main>
     </div>

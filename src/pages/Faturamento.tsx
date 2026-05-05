@@ -3,8 +3,8 @@ import { Input } from "@/components/ui/input";
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { useState } from "react";
 import {
-  Target, Hash, DollarSign, Package, RefreshCcw, Undo2,
-  CheckCircle2, ListChecks, Scale, Equal, FilterX, Filter, Percent, BarChart3,
+  Target, DollarSign, RefreshCcw, Undo2,
+  CheckCircle2, Scale, FilterX, Filter, Percent, BarChart3,
 } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { DataTable } from "@/components/DataTable";

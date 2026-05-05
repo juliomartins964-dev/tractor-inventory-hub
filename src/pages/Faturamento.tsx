@@ -4,11 +4,14 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { useState } from "react";
 import {
   Target, Hash, DollarSign, Package, RefreshCcw, Undo2,
-  CheckCircle2, ListChecks, Scale, Equal, FilterX, Filter,
+  CheckCircle2, ListChecks, Scale, Equal, FilterX, Filter, Percent, BarChart3,
 } from "lucide-react";
 import { StatCard } from "@/components/StatCard";
 import { DataTable } from "@/components/DataTable";
 import { EmptyState } from "@/components/EmptyState";
+import {
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RTooltip, Legend, ResponsiveContainer, Cell,
+} from "recharts";
 
 const FAT_COLS = [
   "Filial", "Mês", "Cliente", "CNPJ/CPF", "Cidade Cliente", "UF Cliente", "Fone",

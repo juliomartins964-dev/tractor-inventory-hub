@@ -29,20 +29,36 @@ const FAT_COLS = [
 const formatBRL = (n: number) =>
   n.toLocaleString("pt-BR", { style: "currency", currency: "BRL", maximumFractionDigits: 0 });
 
+// Color thresholds based on % remaining to reach the goal:
+// >= 60% remaining = red, >=50% = yellow, otherwise green
+const getStatusColor = (restantePct: number) => {
+  if (restantePct >= 60) return { bar: "bg-destructive", hex: "hsl(var(--destructive))", label: "Crítico" };
+  if (restantePct >= 50) return { bar: "bg-warning", hex: "hsl(var(--warning))", label: "Atenção" };
+  return { bar: "bg-success", hex: "hsl(var(--success))", label: "Bom" };
+};
+
 const ProgressRow = ({ label, value, target = 0 }: { label: string; value: number; target?: number }) => {
   const pct = target > 0 ? Math.min(100, (value / target) * 100) : 0;
-  const restante = Math.max(0, target - value);
+  const restantePct = Math.max(0, 100 - pct);
+  const color = getStatusColor(restantePct);
   return (
     <div className="space-y-2">
       <div className="flex justify-between text-sm">
         <span className="font-medium text-foreground">{label}</span>
         <span className="text-muted-foreground tabular-nums">{pct.toFixed(1)}%</span>
       </div>
-      <div className="h-3 bg-muted rounded-full overflow-hidden">
-        <div className="h-full bg-gradient-to-r from-primary to-primary-light rounded-full transition-all duration-500"
-          style={{ width: `${pct}%` }} />
+      <div className="relative h-3 bg-muted rounded-full overflow-hidden">
+        <div className="absolute inset-0 flex opacity-40">
+          <div className="flex-1 bg-destructive" />
+          <div className="flex-1 bg-warning" />
+          <div className="flex-1 bg-success" />
+        </div>
+        <div className={`relative h-full ${color.bar} rounded-full transition-all duration-500`} style={{ width: `${pct}%` }} />
       </div>
-      <p className="text-xs text-muted-foreground">% para atingir a meta = <span className="font-semibold text-foreground">{restante}</span></p>
+      <p className="text-xs text-muted-foreground flex items-center gap-2">
+        <span>% para atingir a meta = <span className="font-semibold text-foreground">{restantePct.toFixed(1)}%</span></span>
+        <span className="inline-block px-2 py-0.5 rounded-full text-[10px] font-bold uppercase text-white" style={{ backgroundColor: color.hex }}>{color.label}</span>
+      </p>
     </div>
   );
 };

@@ -1,12 +1,1 @@
-[
-  { "id": 1, "status": "Disponível", "cotacao": "COT-2025-001", "chassi": "JD9R410X12345", "filial": "Ribeirão Preto", "valor": 1250000, "dataEntrada": "2026-04-12", "pdfPath": "/notas/nf-001.pdf" },
-  { "id": 2, "status": "Reservado", "cotacao": "COT-2025-002", "chassi": "JD8R340X67890", "filial": "Cuiabá", "valor": 980000, "dataEntrada": "2026-04-15", "pdfPath": "/notas/nf-002.pdf" },
-  { "id": 3, "status": "Vendido", "cotacao": "COT-2025-003", "chassi": "JD7R290X11223", "filial": "Goiânia", "valor": 875000, "dataEntrada": "2026-04-18", "pdfPath": "/notas/nf-003.pdf" },
-  { "id": 4, "status": "Disponível", "cotacao": "COT-2025-004", "chassi": "JD6M140X44556", "filial": "Londrina", "valor": 620000, "dataEntrada": "2026-04-20", "pdfPath": "/notas/nf-004.pdf" },
-  { "id": 5, "status": "Em trânsito", "cotacao": "COT-2025-005", "chassi": "JD5E090X77889", "filial": "Ribeirão Preto", "valor": 410000, "dataEntrada": "2026-04-22", "pdfPath": "/notas/nf-005.pdf" },
-  { "id": 6, "status": "Disponível", "cotacao": "COT-2025-006", "chassi": "JD9RX410X99001", "filial": "Cuiabá", "valor": 1380000, "dataEntrada": "2026-04-24", "pdfPath": "/notas/nf-006.pdf" },
-  { "id": 7, "status": "Reservado", "cotacao": "COT-2025-007", "chassi": "JD8R310X22334", "filial": "Goiânia", "valor": 945000, "dataEntrada": "2026-04-26", "pdfPath": "/notas/nf-007.pdf" },
-  { "id": 8, "status": "Vendido", "cotacao": "COT-2025-008", "chassi": "JD6M110X55667", "filial": "Londrina", "valor": 580000, "dataEntrada": "2026-04-28", "pdfPath": "/notas/nf-008.pdf" },
-  { "id": 9, "status": "Disponível", "cotacao": "COT-2025-009", "chassi": "JD5E075X88990", "filial": "Cuiabá", "valor": 365000, "dataEntrada": "2026-04-29", "pdfPath": "/notas/nf-009.pdf" },
-  { "id": 10, "status": "Em trânsito", "cotacao": "COT-2025-010", "chassi": "JD7R250X33445", "filial": "Ribeirão Preto", "valor": 820000, "dataEntrada": "2026-04-30", "pdfPath": "/notas/nf-010.pdf" }
-]
+[]

@@ -10,7 +10,7 @@ import { StatCard } from "@/components/StatCard";
 import { DataTable } from "@/components/DataTable";
 import { EmptyState } from "@/components/EmptyState";
 import {
-  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RTooltip, Legend, ResponsiveContainer, Cell,
+  BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip as RTooltip, Legend, ResponsiveContainer,
 } from "recharts";
 
 const FAT_COLS = [

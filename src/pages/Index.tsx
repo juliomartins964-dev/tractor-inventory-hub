@@ -179,7 +179,7 @@ const Index = () => {
         <StatCard label="Dias em Estoque" value={`${diasMedios} dias`} hint="média por trator" icon={CalendarDays} variant="primary" />
       </section>
 
-      <FiscalBars title="Ano Fiscal — Entradas por Mês" items={fiscalItems} />
+      
 
       <section className="card-elevated overflow-hidden">
         <div className="px-6 py-4 border-b border-border flex items-center justify-between">

@@ -100,20 +100,20 @@ const Index = () => {
 
   return (
     <>
-      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
+      <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-3 sm:gap-4">
         <div>
-          <h2 className="text-2xl font-bold text-foreground">Entrada de Estoque</h2>
-          <p className="text-sm text-muted-foreground">Cadastre, filtre e acompanhe os tratores em estoque.</p>
+          <h2 className="text-xl sm:text-2xl font-bold text-foreground">Entrada de Estoque</h2>
+          <p className="text-xs sm:text-sm text-muted-foreground">Cadastre, filtre e acompanhe os tratores em estoque.</p>
         </div>
-        <div className="flex items-center gap-3">
-          <Button size="lg" variant="outline" onClick={handleExportXLSX} disabled={filtered.length === 0}
+        <div className="flex flex-wrap items-center gap-2 sm:gap-3">
+          <Button size="default" variant="outline" onClick={handleExportXLSX} disabled={filtered.length === 0}
             className="border-primary/30 text-primary hover:bg-primary/5 font-semibold">
             <Download className="mr-2 h-4 w-4" /> Exportar XLSX
           </Button>
           <TooltipProvider delayDuration={150}>
             <Tooltip>
               <TooltipTrigger asChild>
-                <Button size="lg" onClick={handleCadastro}
+                <Button size="default" onClick={handleCadastro}
                   className="bg-accent text-accent-foreground hover:bg-accent/90 font-semibold shadow-md">
                   <Upload className="mr-2 h-4 w-4" /> Cadastro
                 </Button>

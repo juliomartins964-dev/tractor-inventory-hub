@@ -73,8 +73,8 @@ const Faturamento = () => {
   return (
     <>
       <div>
-        <h2 className="text-2xl font-bold text-foreground">Faturamento Máquinas Novas</h2>
-        <p className="text-sm text-muted-foreground">RVD — Resultado de Vendas Diário</p>
+        <h2 className="text-xl sm:text-2xl font-bold text-foreground">Faturamento Máquinas Novas</h2>
+        <p className="text-xs sm:text-sm text-muted-foreground">RVD — Resultado de Vendas Diário</p>
       </div>
 
       <section className="card-elevated p-5">

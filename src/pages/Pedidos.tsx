@@ -10,7 +10,7 @@ import { DataTable } from "@/components/DataTable";
 const PEDIDOS_COLS = [
   "Cotação", "Código Base", "Modelo", "Cliente", "Obs", "Status", "MV",
   "Ordem Comar", "Preço Total da Ordem", "Dealer Price", "Bonus Up Front",
-  "Bonus Total", "Data FDD", "Mês", "Loja de Compra", "Configuração",
+  "Bonus Total", "Data FDD", "Mês", "Loja de Compra", "Configuração", "Ações",
 ];
 
 const Pedidos = () => {

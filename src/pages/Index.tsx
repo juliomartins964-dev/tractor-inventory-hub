@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import {
   FileText, Upload, Search, Wallet, Package, TrendingUp,
-  CheckCircle2, CalendarDays, Download, FilterX,
+  CheckCircle2, CalendarDays, Download, FilterX, Pencil, Trash2,
 } from "lucide-react";
 import * as XLSX from "xlsx";
 import { Trator } from "@/types/trator";
@@ -186,36 +186,66 @@ const Index = () => {
           <h3 className="font-semibold text-foreground">Tratores em Estoque</h3>
           <span className="text-xs text-muted-foreground">{filtered.length} de {tratores.length} registros</span>
         </div>
-        <div className="overflow-auto max-h-[520px]">
+        <div className="overflow-auto max-h-[560px]">
           <table className="w-full text-sm">
             <thead className="bg-secondary sticky top-0 z-10">
               <tr className="text-left text-xs uppercase tracking-wide text-secondary-foreground">
-                <th className="px-6 py-3 font-semibold">Status</th>
-                <th className="px-6 py-3 font-semibold">Cotação</th>
-                <th className="px-6 py-3 font-semibold">Chassi</th>
-                <th className="px-6 py-3 font-semibold">Filial</th>
-                <th className="px-6 py-3 font-semibold text-right">Valor</th>
-                <th className="px-6 py-3 font-semibold">Data Entrada</th>
+                {[
+                  "Status","Modelo","N. Cotação","CHASSI","NF","Data emissão","Venc. NCC",
+                  "Data Entrada","Dias em estoque","Preço de Lista","Valor Compra",
+                  "Bonus UP FRONT","Bonus campanha","Bonus Total","Loja compra","MV",
+                  "Condição / Estoque","Campanhas","Observação","Ações",
+                ].map((c) => (
+                  <th key={c} className="px-4 py-3 font-semibold whitespace-nowrap">{c}</th>
+                ))}
               </tr>
             </thead>
             <tbody>
+              {filtered.length === 0 && (
+                <tr><td colSpan={20}><EmptyState message="Nenhum trator cadastrado. Use o botão Cadastro para iniciar." /></td></tr>
+              )}
               {filtered.map((t) => (
                 <tr key={t.id} className="border-t border-border hover:bg-secondary/50 transition-colors">
-                  <td className="px-6 py-3.5">
+                  <td className="px-4 py-3 whitespace-nowrap">
                     <span className={`inline-flex items-center px-2.5 py-1 rounded-full text-xs font-medium border ${statusBadge(t.status)}`}>
                       {t.status}
                     </span>
                   </td>
-                  <td className="px-6 py-3.5 font-medium">{t.cotacao}</td>
-                  <td className="px-6 py-3.5 font-mono text-xs">{t.chassi}</td>
-                  <td className="px-6 py-3.5 text-muted-foreground">{t.filial}</td>
-                  <td className="px-6 py-3.5 text-right font-semibold tabular-nums">{formatBRL(t.valor)}</td>
-                  <td className="px-6 py-3.5 text-muted-foreground tabular-nums">{formatDate(t.dataEntrada)}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap font-medium">{t.cotacao}</td>
+                  <td className="px-4 py-3 whitespace-nowrap font-mono text-xs">{t.chassi}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap tabular-nums">{formatDate(t.dataEntrada)}</td>
+                  <td className="px-4 py-3 whitespace-nowrap tabular-nums">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap tabular-nums">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap tabular-nums font-semibold">{formatBRL(t.valor)}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">{t.filial}</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap text-muted-foreground">—</td>
+                  <td className="px-4 py-3 whitespace-nowrap">
+                    <div className="flex items-center gap-1">
+                      <Button size="icon" variant="ghost" className="h-8 w-8 text-info hover:bg-info/10"
+                        onClick={() => toast.info("Editar", { description: `Cotação ${t.cotacao}` })}>
+                        <Pencil className="h-4 w-4" />
+                      </Button>
+                      <Button size="icon" variant="ghost" className="h-8 w-8 text-destructive hover:bg-destructive/10"
+                        onClick={() => {
+                          setTratores((prev) => prev.filter((x) => x.id !== t.id));
+                          toast.success("Registro excluído");
+                        }}>
+                        <Trash2 className="h-4 w-4" />
+                      </Button>
+                    </div>
+                  </td>
                 </tr>
               ))}
-              {filtered.length === 0 && (
-                <tr><td colSpan={6}><EmptyState message="Nenhum trator cadastrado. Use o botão Cadastro para iniciar." /></td></tr>
-              )}
             </tbody>
           </table>
         </div>

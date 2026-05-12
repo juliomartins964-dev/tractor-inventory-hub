@@ -6,7 +6,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "sonner";
 import {
   FileText, Upload, Search, Wallet, Package, TrendingUp,
-  CheckCircle2, CalendarDays, Download, FilterX,
+  CheckCircle2, CalendarDays, Download, FilterX, Pencil, Trash2,
 } from "lucide-react";
 import * as XLSX from "xlsx";
 import { Trator } from "@/types/trator";

@@ -1,10 +1,11 @@
+import { ReactNode } from "react";
 import { Building2 } from "lucide-react";
 import { EmptyState } from "./EmptyState";
 
 interface Props {
   title: string;
   columns: string[];
-  rows?: (string | number)[][];
+  rows?: ReactNode[][];
   count?: string;
 }
 

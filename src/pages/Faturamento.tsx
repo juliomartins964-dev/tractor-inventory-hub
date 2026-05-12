@@ -146,32 +146,62 @@ const Faturamento = () => {
         </section>
       </div>
 
-      <section className="card-elevated p-6">
-        <div className="flex items-center gap-2 mb-4">
-          <BarChart3 className="h-4 w-4 text-primary" />
-          <h3 className="font-semibold text-foreground">Meta Valor x Valor Faturado</h3>
-        </div>
-        <div className="h-72">
-          <ResponsiveContainer width="100%" height="100%">
-            <BarChart
-              data={["Nov","Dez","Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out"].map((m) => ({ mes: m, meta: 0, faturado: 0 }))}
-              margin={{ top: 10, right: 16, left: 0, bottom: 0 }}
-            >
-              <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
-              <XAxis dataKey="mes" tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }} />
-              <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
-                tickFormatter={(v: number) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : `${v}`} />
-              <RTooltip
-                formatter={(v: number) => formatBRL(v)}
-                contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8 }}
-              />
-              <Legend wrapperStyle={{ fontSize: 12 }} />
-              <Bar dataKey="meta" name="Meta" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} />
-              <Bar dataKey="faturado" name="Faturado" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
-            </BarChart>
-          </ResponsiveContainer>
-        </div>
-      </section>
+      <div className="grid grid-cols-1 xl:grid-cols-2 gap-4">
+        <section className="card-elevated p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <BarChart3 className="h-4 w-4 text-primary" />
+            <h3 className="font-semibold text-foreground">Meta Valor x Valor Faturado — por Mês</h3>
+          </div>
+          <div className="h-72">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={["Nov","Dez","Jan","Fev","Mar","Abr","Mai","Jun","Jul","Ago","Set","Out"].map((m) => ({ mes: m, meta: 0, faturado: 0 }))}
+                margin={{ top: 10, right: 16, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis dataKey="mes" tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }} />
+                <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                  tickFormatter={(v: number) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : `${v}`} />
+                <RTooltip
+                  formatter={(v: number) => formatBRL(v)}
+                  contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8 }}
+                />
+                <Legend wrapperStyle={{ fontSize: 12 }} />
+                <Bar dataKey="meta" name="Meta" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="faturado" name="Faturado" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+        </section>
+
+        <section className="card-elevated p-6">
+          <div className="flex items-center gap-2 mb-4">
+            <BarChart3 className="h-4 w-4 text-primary" />
+            <h3 className="font-semibold text-foreground">Meta Valor x Valor Faturado — por Filial</h3>
+          </div>
+          <div className="h-72">
+            <ResponsiveContainer width="100%" height="100%">
+              <BarChart
+                data={[]}
+                margin={{ top: 10, right: 16, left: 0, bottom: 0 }}
+              >
+                <CartesianGrid strokeDasharray="3 3" stroke="hsl(var(--border))" />
+                <XAxis dataKey="filial" tick={{ fontSize: 12, fill: "hsl(var(--muted-foreground))" }} />
+                <YAxis tick={{ fontSize: 11, fill: "hsl(var(--muted-foreground))" }}
+                  tickFormatter={(v: number) => v >= 1000 ? `${(v / 1000).toFixed(0)}k` : `${v}`} />
+                <RTooltip
+                  formatter={(v: number) => formatBRL(v)}
+                  contentStyle={{ background: "hsl(var(--card))", border: "1px solid hsl(var(--border))", borderRadius: 8 }}
+                />
+                <Legend wrapperStyle={{ fontSize: 12 }} />
+                <Bar dataKey="meta" name="Meta" fill="hsl(var(--accent))" radius={[4, 4, 0, 0]} />
+                <Bar dataKey="faturado" name="Faturado" fill="hsl(var(--primary))" radius={[4, 4, 0, 0]} />
+              </BarChart>
+            </ResponsiveContainer>
+          </div>
+          <p className="text-xs text-muted-foreground text-center mt-2">Sem dados de filial cadastrados.</p>
+        </section>
+      </div>
 
       <DataTable title="Faturamento Detalhado" columns={FAT_COLS} />
     </>
